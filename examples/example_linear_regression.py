@@ -5,7 +5,7 @@ sys.path.insert(0, '/Users/emilioalberini/Desktop/eaLearn')
 from sklearn.datasets import make_regression
 import matplotlib.pyplot as plt
 
-from eaLearn.supervised import LinearRegression
+from eaLearn import LinearRegression
 from eaLearn.utils.data_manipulation import train_test_split
 
 

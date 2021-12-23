@@ -2,9 +2,20 @@ import numpy as np
 
 """
 
-Implementation from scratch of linear regression.
+Implementation of linear regression algortihms.
+
+    1. LinearRegression - basic linear regression (OLS)
+    2. Lasso - linear regression with l1 regularization
+    3. Ridge - linear regression with l2 regularization
+    4. ElasticNet - linear regression with l1 AND l2 regularizations
 
 """
+
+class Regression:
+
+    def __init__():
+        pass
+
 
 
 class LinearRegression:
