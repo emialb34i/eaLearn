@@ -80,6 +80,7 @@ class LinearRegression(Regression):
 
 
 class Lasso(Regression):
+    # TODO: add L1 regularaziation
     pass
         
 
