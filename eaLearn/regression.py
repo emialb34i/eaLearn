@@ -66,8 +66,8 @@ class Regression:
         self.y = np.array(y)
         self.N, self.D = self.X.shape
         
-        # init betas randomly between [-1/D, 1/D]
-        self.beta_hats = np.random.uniform(-1/self.D, 1/self.D, size=(self.D, ))
+        # init betas randomly
+        self.beta_hats = np.random.randn(self.D, )
 
         # gradient descent on squared loss
         self.training_errors = []
