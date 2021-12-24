@@ -32,14 +32,29 @@ class l2_regularization:
     
     def grad(self, beta):
         return self.lam * beta
+
+class l1_l2_regularization:
+
+    def __init__(self, lam):
+        self.lam = lam
+
+    def __call__(self, beta):
+        l1 = np.linalg.norm(beta, ord=1)
+        l2 = 0.5 * np.linalg.norm(beta, ord=2) 
+        return self.lam * (l1 + l2)
+    
+    def grad(self, beta):
+        l1_grad = np.sign(beta)
+        l2_grad = 0.5 * np.linalg.norm(beta, ord=2) 
+        return self.lam * (l1_grad + l2_grad)
    
 
 class Regression:
 
     def __init__(self, alpha=0.001, fit_intercept=True, max_iter=100):
-        self.max_iter = max_iter
         self.alpha = alpha
         self.fit_intercept = fit_intercept
+        self.max_iter = max_iter
     
     def fit(self, X, y):
         # if we data does not have intercept we add it
@@ -116,6 +131,12 @@ class Ridge(Regression):
     def __init__(self, lam=1.0, alpha=0.001, fit_intercept=True, max_iter=100):
         self.regualiraztion = l2_regularization(lam)
         super(Ridge, self).__init__(alpha, fit_intercept, max_iter)
+
+class ElasticNet(Regression):
+
+    def __init__(self, lam=1.0, alpha=0.001, fit_intercept=True, max_iter=100):
+        self.regualiraztion = l1_l2_regularization(lam)
+        super(ElasticNet, self).__init__(alpha, fit_intercept, max_iter)
     
         
 

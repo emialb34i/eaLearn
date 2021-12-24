@@ -5,7 +5,7 @@ sys.path.insert(0, '/Users/emilioalberini/Desktop/eaLearn')
 from sklearn.datasets import make_regression
 import matplotlib.pyplot as plt
 
-from eaLearn import LinearRegression, Lasso , Ridge
+from eaLearn import LinearRegression, Lasso , Ridge, ElasticNet
 from eaLearn.utils.data_manipulation import train_test_split
 
 
@@ -13,7 +13,7 @@ def main():
 
     # data
     X, y = make_regression(n_samples=100, n_features=1, noise=20)
-    model = Ridge()
+    model = ElasticNet()
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
     
