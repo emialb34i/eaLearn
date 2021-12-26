@@ -9,7 +9,6 @@ def shuffle_data(X, y, seed=None):
     return X[idx], y[idx]
 
 
-
 def train_test_split(X, y, test_size=0.2, shuffle=True, seed=None):
     """ Split the data into train and test set """
     if shuffle:
@@ -19,4 +18,3 @@ def train_test_split(X, y, test_size=0.2, shuffle=True, seed=None):
     y_train, y_test = y[:split_i], y[split_i:]
 
     return X_train, X_test, y_train, y_test
-
