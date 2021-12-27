@@ -63,7 +63,7 @@ class Regression:
             X = np.concatenate((ones, X), axis=1)
 
         # m training examples, n features
-        m, n = self.X.shape
+        m, n = X.shape
         
         # init weights randomly
         self.w = np.random.rand(n)

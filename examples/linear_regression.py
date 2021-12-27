@@ -2,32 +2,34 @@
 import sys
 sys.path.insert(0, '/Users/emilioalberini/Desktop/eaLearn')
 
-import numpy as np
-from sklearn.datasets import make_regression
-import matplotlib.pyplot as plt
+from sklearn.datasets import load_boston
+from sklearn.linear_model import LinearRegression as LinearRegressionSK
 
-from eaLearn import LinearRegression, Lasso , Ridge, ElasticNet
+from eaLearn import LinearRegression
 from eaLearn.utils.data_manipulation import train_test_split
+from eaLearn.utils.data_operation import mean_squared_error
 
 
 def main():
 
-    # data
-    X, y = make_regression(n_samples=100, n_features=1, noise=20)
-    model = ElasticNet()
-    
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
-    
+    # load data and split it
+    X, y = load_boston(return_X_y=True)
+    X_train, X_test, y_train, y_test = train_test_split(X,y)
+    # init modle and fit it to the data
+    model = LinearRegression()
     model.fit(X_train, y_train)
-    y_pred_line = model.predict(X)
+    # test out model
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    print(f"eaLearn Model MSE: {mse}")
 
-    print(model.beta_hats)
-
-    m1 = plt.scatter(366 * X_train, y_train, s=10)
-    m2 = plt.scatter(366 * X_test, y_test, s=10)
-    plt.plot(366 * X, y_pred_line, color='black', linewidth=2, label="Prediction")
-    plt.legend((m1, m2), ("Training data", "Test data"), loc='lower right')
-    plt.show()
+    # comapare it to sklearn model
+    sk_model = LinearRegressionSK()
+    sk_model.fit(X_train, y_train)
+    # test out model
+    y_pred = sk_model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    print(f"sklearn Model MSE: {mse}")
 
 if __name__ == "__main__":
     main()
