@@ -9,9 +9,9 @@ Logistic Regression
 def sigmoid(X):
     return 1/(1+np.exp(-X))
 
-class Regression:
+class LogisticRegression:
 
-    def __init__(self, learning_rate=0.01, fit_intercept=True, max_iter=1000):
+    def __init__(self, learning_rate=0.1, fit_intercept=True, max_iter=1500):
         self.learning_rate = learning_rate
         self.fit_intercept = fit_intercept
         self.max_iter = max_iter
@@ -23,7 +23,7 @@ class Regression:
             X = np.concatenate((ones, X), axis=1)
 
         # m training examples, n features
-        m, n = self.X.shape
+        m, n = X.shape
         
         # init weights randomly
         self.w = np.random.rand(n)
@@ -40,6 +40,6 @@ class Regression:
         # insert intercept
         if self.fit_intercept:
             X = np.insert(X, 0, 1, axis=1)
-        y_pred = np.round(sigmoid(X.dot(self.param))).astype(int)
+        y_pred = np.round(sigmoid(X.dot(self.w))).astype(int)
         return y_pred
 

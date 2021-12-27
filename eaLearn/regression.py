@@ -45,7 +45,7 @@ class l1_l2_regularization:
     
     def grad(self, w):
         l1_grad = np.sign(w)
-        l2_grad = 0.5 * np.linalg.norm(w, ord=2) 
+        l2_grad = self.lam * w
         return self.lam * (l1_grad + l2_grad)
    
 
@@ -73,10 +73,10 @@ class Regression:
         for _ in range(self.max_iter):
             y_pred = X@self.w
             # mean squared error
-            mse = np.mean((y-y_pred)**2)
+            mse = np.mean((y-y_pred)**2) + self.regulirization(self.w)
             self.training_errors.append(mse)
             # grad of mse wrt to w
-            grad_w = -((y-y_pred)@X)*(2/m)
+            grad_w = -((y-y_pred)@X)*(2/m) + self.regulirization.grad(self.w)
             # gradient descent step
             self.w = self.w - self.learning_rate*grad_w
 
@@ -113,20 +113,20 @@ class LinearRegression(Regression):
 
 class Lasso(Regression):
 
-    def __init__(self, lam=1.0, learning_rate=0.001, fit_intercept=True, max_iter=100):
-        self.regualiraztion = l1_regularization(lam)
+    def __init__(self, lam=1.0, learning_rate=0.01, fit_intercept=True, max_iter=1500):
+        self.regulirization = l1_regularization(lam)
         super(Lasso, self).__init__(learning_rate, fit_intercept, max_iter)
 
 class Ridge(Regression):
 
-    def __init__(self, lam=1.0, learning_rate=0.001, fit_intercept=True, max_iter=100):
-        self.regualiraztion = l2_regularization(lam)
+    def __init__(self, lam=1.0, learning_rate=0.01, fit_intercept=True, max_iter=1500):
+        self.regulirization = l2_regularization(lam)
         super(Ridge, self).__init__(learning_rate, fit_intercept, max_iter)
 
 class ElasticNet(Regression):
 
-    def __init__(self, lam=1.0, learning_rate=0.001, fit_intercept=True, max_iter=100):
-        self.regualiraztion = l1_l2_regularization(lam)
+    def __init__(self, lam=1.0, learning_rate=0.01, fit_intercept=True, max_iter=1500):
+        self.regulirization = l1_l2_regularization(lam)
         super(ElasticNet, self).__init__(learning_rate, fit_intercept, max_iter)
     
         

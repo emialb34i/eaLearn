@@ -1,5 +1,8 @@
 ## eaLearn
 
+
+## About
+
 Building out a machine learing learning library from scratch as a learning experience. The library will include the most common ML algorithms and will not use external libraries, except numpy.
 
 # Algorithms
