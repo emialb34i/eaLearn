@@ -18,3 +18,7 @@ def train_test_split(X, y, test_size=0.2, shuffle=True, seed=None):
     y_train, y_test = y[:split_i], y[split_i:]
 
     return X_train, X_test, y_train, y_test
+
+def standardize(X):
+    """ Standardize features by removing the mean and scaling to unit variance """
+    return (X - np.mean(X, axis=0))/np.std(X, axis=0)

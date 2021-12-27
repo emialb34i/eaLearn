@@ -4,10 +4,10 @@ sys.path.insert(0, '/Users/emilioalberini/Desktop/eaLearn')
 
 from sklearn.datasets import load_boston
 from sklearn.linear_model import ElasticNet as ElasticNetSK
-from sklearn.preprocessing import StandardScaler
 
 from eaLearn import ElasticNet
 from eaLearn.utils.data_manipulation import train_test_split
+from eaLearn.utils.data_manipulation import standardize
 from eaLearn.utils.data_operation import mean_squared_error
 
 
@@ -15,8 +15,7 @@ def main():
 
     # load data, preprocess it, and split it
     X, y = load_boston(return_X_y=True)
-    scale = StandardScaler()
-    X = scale.fit_transform(X)
+    X = standardize(X)
     X_train, X_test, y_train, y_test = train_test_split(X,y)
     
     # init model and fit it to the data
