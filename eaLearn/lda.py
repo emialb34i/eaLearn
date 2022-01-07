@@ -1,5 +1,4 @@
 import numpy as np
-
 from eaLearn.utils import multivariate_normal
 
 class LDA:
@@ -40,7 +39,7 @@ class LDA:
                 p_x_given_y = multivariate_normal(xi, self.mu_ks[j], self.cov)
                 p_y_given_x = p_x_given_y*self.priors[j]
                 p_ks[j] = p_y_given_x
-            # classify as class with the highest posterior
+            # classify observation to class with the highest posterior
             y_pred[i] = self.y_unique[np.argmax(p_ks)]
             
         return y_pred
