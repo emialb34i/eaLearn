@@ -31,5 +31,5 @@ mse = mean_squared_error(y_test, y_pred)
 ### Lasso
     $ python examples/lasso.py
 
-![Lasso Regularization](/examples/lasso.png)
+![Lasso Regularization](/examples/images/lasso.png)
 *Lasso*
