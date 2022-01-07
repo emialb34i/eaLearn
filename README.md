@@ -19,7 +19,7 @@ Building out a machine learing learning library from scratch as a learning exper
 # Examples
 
 ## Linear Regression
-```
+```python
 X, y = load_boston(return_X_y=True)
 X_train, X_test, y_train, y_test = train_test_split(X,y)
 model = LinearRegression()
@@ -29,6 +29,7 @@ mse = mean_squared_error(y_test, y_pred)
 ```
 
 ## Lasso
-
+    $ python examples/lasso.py
+    
 ![Lasso Regularization](/examples/lasso.png)
 *Lasso*
