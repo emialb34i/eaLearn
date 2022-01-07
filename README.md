@@ -18,8 +18,6 @@ Building out a machine learing learning library from scratch as a learning exper
 
 ## Examples
 
----
-
 ### Linear Regression
 ```python
 X, y = load_boston(return_X_y=True)
