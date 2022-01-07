@@ -79,6 +79,8 @@ class Regression:
             grad_w = -((y-y_pred)@X)*(2/m) + self.regulirization.grad(self.w)
             # gradient descent step
             self.w = self.w - self.learning_rate*grad_w
+        
+        return self
 
     def predict(self, X):
         # insert intercept

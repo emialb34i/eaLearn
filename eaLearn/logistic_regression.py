@@ -35,6 +35,8 @@ class LogisticRegression:
             grad_w = -(y-y_pred)@X*(1/m)
             # gradient descent step
             self.w = self.w - self.learning_rate*grad_w
+    
+        return self
 
     def predict(self, X):
         # insert intercept
