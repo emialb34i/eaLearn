@@ -26,7 +26,7 @@ class QDA:
             self.mu_ks[i] = mu_k
 
         for i, k in enumerate(self.y_unique):
-            self.covs[i] += ((X[y==k]-self.mu_ks[i]).T @ (X[y==k]-self.mu_ks[i]))
+            self.covs[i] = ((X[y==k]-self.mu_ks[i]).T @ (X[y==k]-self.mu_ks[i]))
             self.covs[i] /= len(X[y==k])-1
         
         return self
