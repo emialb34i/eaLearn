@@ -8,8 +8,8 @@ Building out a machine learing learning library from scratch as a learning exper
 ## Algorithms
 - [x] Linear Regression (Lasso, Ridge, ElasticNet)
 - [x] Logistic Regression
-- [ ] LDA
-- [ ] QDA
+- [x] LDA
+- [x] QDA
 - [ ] Naive Bayes
 - [ ] Regression and Classification Trees
 - [ ] Bagging, Random Forests, Boosting (AdaBoost and XGBoost)
@@ -32,4 +32,8 @@ mse = mean_squared_error(y_test, y_pred)
     $ python examples/lasso.py
 
 ![Lasso Regularization](/examples/images/lasso.png)
-*Lasso*
+
+### QDA
+    $ python examples/qda.py
+
+![QDA Decision Boundaries](/examples/images/qda.png)

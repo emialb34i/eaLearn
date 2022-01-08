@@ -31,7 +31,6 @@ class LDA:
         m = len(X)
         # we find the class k that maximizes the posterior
         y_pred = np.empty(m)
-        print("y_pred: ", y_pred)
         for i, xi in enumerate(X):
             p_ks = np.empty(self.n_classes)
             # calculate the posterior probablity for each class
