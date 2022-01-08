@@ -5,3 +5,4 @@ from .regression import ElasticNet
 from .logistic_regression import LogisticRegression
 from .lda import LDA
 from .qda import QDA
+from .naive_bayes import NaiveBayes
