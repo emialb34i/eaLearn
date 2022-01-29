@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.lib.arraysetops import isin
 
 class Node:
     def __init__(self, feature_i=None, threshold=None, value=None, left=None, right=None):
@@ -8,7 +9,7 @@ class Node:
         self.left = left # left subtree (true)
         self.right = right # right subtree (false)
 
-class DecisionTree:
+class DecisionTreeClassification:
     def __init__(self, min_samples_split=2, max_depth=float("inf"), min_impurity=1e-7):
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
@@ -19,10 +20,31 @@ class DecisionTree:
         self.root = self.build_tree(X,y)
         return self
     
+    def precict_value(self, X, tree=None):
+        # recursive search down the tree
+        if tree is None:
+            tree = self.root
+        if tree.value is not None:
+            return tree.value
+        feature_value = X[tree.feature_i]
+        subtree = tree.right
+        if isinstance(tree.threshold, int) or isinstance(tree.threshold, float):
+            if feature_value <= tree.threshold:
+                subtree = tree.left
+        elif feature_value == tree.threshold:
+            subtree = tree.left
+        return self.precict_value(X, subtree)
+        
+
+    def predict(self, X):
+        # recurse through the tree unitl reaching a leaf and return its value
+        y_pred = [self.predict_value(sample) for sample in X]
+        return y_pred
+
     def build_tree(self, X, y, current_depth=0):
         best_criteria = None
         best_sets = None
-        n_samples, n_features = X.shape
+        n_features = X.shape[1]
         largest_impurity = 0
         # trick to make the dimesions work
         if len(np.shape(y)) == 1:
@@ -65,7 +87,7 @@ class DecisionTree:
     def split(self, X, feature, threshold):
         split_func = None
         if isinstance(threshold, int) or isinstance(threshold, float):
-            split_func = lambda sample: sample[feature] < threshold
+            split_func = lambda sample: sample[feature] <= threshold
         else:
             split_func = lambda sample: sample[feature] == threshold
         X1 = np.array([sample for sample in X if split_func(sample)])
@@ -112,4 +134,5 @@ class DecisionTree:
             # Print the false scenario
             print ("%sF->" % (indent), end="")
             self.print_tree(tree.right, indent + indent)
+
         
