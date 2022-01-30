@@ -11,7 +11,7 @@ Building out a machine learing learning library from scratch as a learning exper
 - [x] LDA
 - [x] QDA
 - [x] Naive Bayes
-- [ ] Regression and Classification Trees
+- [x] Regression and Classification Trees
 - [ ] Bagging, Random Forests, Boosting (AdaBoost and XGBoost)
 - [ ] Neural Networks (MLP, CNN)
 - [ ] SVM
