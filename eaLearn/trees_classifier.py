@@ -132,3 +132,4 @@ class DecisionTreeClassification:
             # Print the false scenario
             print ("%sF->" % (indent), end="")
             self.print_tree(tree.right, indent + indent)
+            
